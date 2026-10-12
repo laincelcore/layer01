@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#050706">
-<title>LAYER 01 — IDENTITY FILE // WIRED404</title>
+<title>LAYER 01 — IDENTITY FILE // WIRED484</title>
 
 <style>
 :root {
@@ -499,7 +499,7 @@ function glitchElement(element, messages) {
 
   element.classList.remove("glitching");
 
-  // Restart the glitch animation.
+  // Restart glitch animation
   void element.offsetWidth;
 
   element.classList.add("glitching");
@@ -510,17 +510,17 @@ function glitchElement(element, messages) {
   }, 800);
 }
 
-// Names change occasionally.
+// Names change
 setInterval(() => {
   glitchElement(aliasElement, aliases);
 }, 2600);
 
-// Status changes independently.
+// Status changes
 setInterval(() => {
   glitchElement(statusElement, statuses);
 }, 3400);
 
-// Sometimes both fields corrupt at the same time.
+// Sometimes both fields corrupt at same time
 setInterval(() => {
   if (Math.random() > 0.45) {
     glitchElement(aliasElement, aliases);
@@ -528,7 +528,7 @@ setInterval(() => {
   }
 }, 11000);
 
-// Strange messages in the developer console.
+// Strange messages in the devconsole
 const messages = [
   "%c[WIRED] connection established.",
   "%c[WARNING] unidentified user detected.",
