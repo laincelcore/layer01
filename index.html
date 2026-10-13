@@ -31,7 +31,7 @@ body {
   overflow-x: hidden;
 }
 
-body:before {
+body::before {
   content: "";
   position: fixed;
   inset: 0;
@@ -46,7 +46,7 @@ body:before {
   );
 }
 
-body:after {
+body::after {
   content: "";
   position: fixed;
   inset: 0;
@@ -107,7 +107,7 @@ main {
   margin-bottom: 24px;
 }
 
-.status:before {
+.status::before {
   content: "● ";
   animation: blink 1s steps(2) infinite;
 }
@@ -155,8 +155,8 @@ h2 {
   overflow: hidden;
 }
 
-/*occasional haunted panel TYPE SHII */
-.panel:after {
+/* Haunted panel scan */
+.panel::after {
   content: "";
   position: absolute;
   top: 0;
@@ -204,7 +204,7 @@ h2 {
   color: #b6beb3;
 }
 
-/* glitching identity and status */
+/* Glitching identity and status */
 .glitch-text {
   display: inline-block;
   position: relative;
@@ -338,6 +338,98 @@ h2 {
   color: #050706;
 }
 
+/* ANONYMOUS MESSAGE TERMINAL */
+.anonymous-terminal {
+  margin: 0 7% 65px;
+  padding: 30px;
+  max-width: 760px;
+  border: 1px solid #263526;
+  background: #080d08;
+  position: relative;
+}
+
+.anon-label {
+  color: var(--green);
+  font-size: 10px;
+  letter-spacing: 2px;
+  margin-bottom: 25px;
+  animation: blink 2s infinite;
+}
+
+.anonymous-terminal h2 {
+  color: var(--pink);
+  font-size: clamp(22px, 4vw, 32px);
+  text-shadow: 2px 0 #a5ff0044;
+  margin-bottom: 15px;
+  line-height: 1.4;
+}
+
+.anonymous-terminal p {
+  color: #929d90;
+  font-size: 12px;
+  line-height: 2;
+  margin-bottom: 25px;
+}
+
+.anon-console {
+  border: 1px dashed #334b2d;
+  padding: 20px;
+  background: #050706;
+}
+
+.anon-console-head {
+  color: var(--pink);
+  font-size: 11px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #263526;
+  margin-bottom: 18px;
+  overflow-wrap: anywhere;
+}
+
+.anon-details {
+  color: #7d897b;
+  font-size: 11px;
+  line-height: 2.2;
+  margin-bottom: 20px;
+}
+
+.anon-details span {
+  color: var(--green);
+}
+
+/* Neon green transmit button */
+.anon-button {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  border: 1px solid var(--green);
+  background: var(--green);
+  color: #050706;
+  text-align: center;
+  font-family: "Courier New", monospace;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-decoration: none;
+  transition: .25s;
+  box-shadow: 0 0 12px #a5ff0022;
+  overflow-wrap: anywhere;
+}
+
+.anon-button:hover {
+  background: transparent;
+  color: var(--green);
+  box-shadow: 0 0 20px #a5ff0055;
+}
+
+.anon-warning {
+  color: var(--pink);
+  font-size: 9px;
+  letter-spacing: 2px;
+  margin-top: 18px;
+  animation: flicker 4s infinite;
+}
+
 footer {
   border-top: 1px solid var(--line);
   padding: 28px 7%;
@@ -371,10 +463,15 @@ footer span {
   .data { grid-template-columns: 1fr; gap: 3px; }
   .memory-grid { grid-template-columns: 1fr; }
   .nav-links { gap: 12px; font-size: 9px; }
+  .anonymous-terminal {
+    margin: 0 6% 45px;
+    padding: 22px;
+  }
+  .anon-console { padding: 15px; }
 }
 
 @media(prefers-reduced-motion:reduce) {
-  *, *:before, *:after {
+  *, *::before, *::after {
     animation: none !important;
   }
 }
@@ -415,9 +512,7 @@ footer span {
 
     <div class="data">
       <div class="key">NAME / ALIAS</div>
-      <div class="value">
-        [<span id="alias" class="glitch-text">LAINCELCORE</span>]
-      </div>
+      <div class="value">[<span id="alias" class="glitch-text">LAINCELCORE</span>]</div>
     </div>
 
     <div class="data">
@@ -442,9 +537,7 @@ footer span {
 
     <div class="data">
       <div class="key">CURRENT STATUS</div>
-      <div class="value">
-        [<span id="current-status" class="glitch-text">ONLINE</span>]
-      </div>
+      <div class="value">[<span id="current-status" class="glitch-text">ONLINE</span>]</div>
     </div>
   </div>
 
@@ -457,8 +550,7 @@ footer span {
   </a>
 </main>
 
-
-<!-- ANON MESSAGE  -->
+<!-- ANONYMOUS MESSAGE -->
 <section class="anonymous-terminal">
   <div class="anon-label">
     ● INCOMING TRANSMISSION // UNKNOWN SENDER
@@ -487,9 +579,7 @@ footer span {
       href="https://tellonym.me/laincelcore"
       target="_blank"
       rel="noopener noreferrer"
-    >
-      TRANSMIT MESSAGE ↗
-    </a>
+    >TRANSMIT MESSAGE ↗</a>
 
     <div class="anon-warning">
       CONNECTION STATUS: UNKNOWN
@@ -498,15 +588,13 @@ footer span {
 </section>
 <!-- END ANON MESSAGE -->
 
-  
-  
 <footer>
   <div>WIRED//484 — <span>STAY CONNECTED.</span></div>
   <div>PERSONAL DIGITAL ARCHIVE · 2026</div>
 </footer>
 
 <script>
-/* IDENTITY FILe auto currop */
+/* IDENTITY FILE AUTO CORRUPTION */
 
 const aliases = [
   "LAINCELCORE",
@@ -553,17 +641,17 @@ function glitchElement(element, messages) {
   }, 800);
 }
 
-// names change
+// Names change
 setInterval(() => {
   glitchElement(aliasElement, aliases);
 }, 2600);
 
-// status changes
+// Status changes
 setInterval(() => {
   glitchElement(statusElement, statuses);
 }, 3400);
 
-// sometimes both fields corrupt at same time
+// Sometimes both fields corrupt at the same time
 setInterval(() => {
   if (Math.random() > 0.45) {
     glitchElement(aliasElement, aliases);
@@ -571,7 +659,7 @@ setInterval(() => {
   }
 }, 11000);
 
-// strange messages in the devconsole
+// Strange messages in the developer console
 const messages = [
   "%c[WIRED] connection established.",
   "%c[WARNING] unidentified user detected.",
