@@ -338,7 +338,7 @@ h2 {
   color: #050706;
 }
 
-/* ANONYMOUS MESSAGE TERMINAL */
+/* ANON MESSAGE TERMINAL */
 .anonymous-terminal {
   margin: 0 7% 65px;
   padding: 30px;
@@ -475,6 +475,67 @@ footer span {
     animation: none !important;
   }
 }
+
+
+  
+/* cursed image tyepe shii */
+.cursed-image-section {
+  margin: 0 7% 65px;
+  max-width: 760px;
+  padding: 25px;
+  border: 1px solid #263526;
+  background: #080d08;
+}
+
+.cursed-image-label {
+  color: var(--pink);
+  font-size: 10px;
+  letter-spacing: 2px;
+  margin-bottom: 18px;
+  animation: flicker 4s infinite;
+}
+
+.cursed-image {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  max-height: 500px;
+  object-fit: contain;
+  border: 1px solid #334b2d;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.cursed-image:hover {
+  border-color: var(--green);
+  box-shadow: 0 0 18px #a5ff0033;
+}
+
+.cursed-message {
+  min-height: 24px;
+  margin-top: 18px;
+  color: var(--pink);
+  font-size: 12px;
+  letter-spacing: 1px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.cursed-counter {
+  color: var(--muted);
+  font-size: 10px;
+  margin-top: 12px;
+  letter-spacing: 1px;
+}
+
+@media(max-width:700px) {
+  .cursed-image-section {
+    margin: 0 6% 45px;
+    padding: 18px;
+  }
+}
+  
 </style>
 </head>
 
@@ -550,7 +611,7 @@ footer span {
   </a>
 </main>
 
-<!-- ANONYMOUS MESSAGE -->
+<!-- ANON MESSAGE -->
 <section class="anonymous-terminal">
   <div class="anon-label">
     ● INCOMING TRANSMISSION // UNKNOWN SENDER
@@ -588,13 +649,39 @@ footer span {
 </section>
 <!-- END ANON MESSAGE -->
 
+
+<!-- cursed imageee -->
+<section class="cursed-image-section">
+  <div class="cursed-image-label">
+    ⚠ UNKNOWN FILE // INTERACTION NOT RECOMMENDED
+  </div>
+
+  <img
+    id="cursedImage"
+    class="cursed-image"
+    src="https://i.pinimg.com/originals/47/8e/10/478e106b61b9a292a572088b1a2d744f.gif"
+    alt="An unidentified image"
+    role="button"
+    tabindex="0"
+  >
+
+  <div id="cursedMessage" class="cursed-message"></div>
+
+  <div class="cursed-counter" id="cursedCounter">
+    CLICKS: 0 // KEEP YOUR DISTANCE
+  </div>
+</section>
+<!-- END CURSED IMAGE -->
+
+
+  
 <footer>
   <div>WIRED//484 — <span>STAY CONNECTED.</span></div>
   <div>PERSONAL DIGITAL ARCHIVE · 2026</div>
 </footer>
 
 <script>
-/* IDENTITY FILE AUTO CORRUPTION */
+/* IDENTITY FILE AUTO CORRUP */
 
 const aliases = [
   "LAINCELCORE",
@@ -630,7 +717,7 @@ function glitchElement(element, messages) {
 
   element.classList.remove("glitching");
 
-  // Restart glitch animation
+  // restart glitch animation
   void element.offsetWidth;
 
   element.classList.add("glitching");
@@ -646,12 +733,12 @@ setInterval(() => {
   glitchElement(aliasElement, aliases);
 }, 2600);
 
-// Status changes
+// Status change
 setInterval(() => {
   glitchElement(statusElement, statuses);
 }, 3400);
 
-// Sometimes both fields corrupt at the same time
+// Sometimes both fields corrupt at same time
 setInterval(() => {
   if (Math.random() > 0.45) {
     glitchElement(aliasElement, aliases);
@@ -659,7 +746,7 @@ setInterval(() => {
   }
 }, 11000);
 
-// Strange messages in the developer console
+// Strange messages
 const messages = [
   "%c[WIRED] connection established.",
   "%c[WARNING] unidentified user detected.",
@@ -689,6 +776,63 @@ setInterval(() => {
     "color:#f05bff;background:#050706;font-family:monospace;font-size:13px;"
   );
 }, 7000);
+
+
+
+/* UNKNOWN IMAGE */
+
+const cursedImage = document.getElementById("cursedImage");
+const cursedMessage = document.getElementById("cursedMessage");
+const cursedCounter = document.getElementById("cursedCounter");
+
+let cursedClicks = 0;
+let warningShown = false;
+
+const firstImage = "https://i.pinimg.com/originals/47/8e/10/478e106b61b9a292a572088b1a2d744f.gif";
+const secondImage = "https://i.pinimg.com/originals/25/04/cd/2504cdcf27108ade4a415017290bb875.gif";
+const destination = "https://LAINNNN.com";
+
+function clickCursedImage() {
+  if (cursedClicks >= 10) return;
+
+  cursedClicks++;
+
+  // 1 click change the image and display a message
+  if (cursedClicks === 1) {
+    cursedImage.src = secondImage;
+    cursedMessage.textContent = "WHY DID U CLICK IT?";
+  }
+
+  // 5 click final warning
+  if (cursedClicks === 5) {
+    cursedMessage.textContent = "STOP... YOU HAVE BEEN WARNED";
+    warningShown = true;
+  }
+
+  cursedCounter.textContent =
+    "CLICKS: " + cursedClicks + " // " +
+    (cursedClicks >= 5 ? "YOU WERE WARNED" : "STOP CLICKING IT");
+
+  // 10 click leave this page
+  if (cursedClicks === 10) {
+    cursedMessage.textContent = "TOO LATE.";
+    cursedCounter.textContent = "CONNECTION LOST // REDIRECTING...";
+    window.location.href = destination;
+  }
+}
+
+cursedImage.addEventListener("click", clickCursedImage);
+
+cursedImage.addEventListener("keydown", function(event) {
+  if (event.key === "Enter" || event.key === " ") {
+    event.preventDefault();
+    clickCursedImage();
+  }
+});
+
+
+
+  
 </script>
 
 </body>
